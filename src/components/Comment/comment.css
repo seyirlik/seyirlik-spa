@@ -1,0 +1,41 @@
+.Comment {
+  display: flex;
+  align-items: center;
+  min-height: 84px;
+  margin-bottom: 10px;
+  transition: all 300ms linear;
+}
+
+.Comment__user {
+  width: 70px;
+  height: 50px;
+  border-radius: 50px;
+  margin-right: 25px;
+}
+
+.Comment__content {
+  min-height: 80px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  transition: all 300ms ease-in-out;
+}
+.Comment__content--spoiler {
+  background-color: rgba(255, 0, 0, 0.3);
+}
+.Comment__text {
+  word-break: break-all;
+  white-space: pre-wrap;
+  font-weight: lighter;
+}
+.Comment__spoiler {
+  width: 100%;
+  height: 80px;
+  background-color: initial;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

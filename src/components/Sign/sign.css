@@ -1,0 +1,93 @@
+.Sign {
+  background: rgba(0, 0, 0, 0.4);
+  width: 30%;
+  padding-top: 55px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 100%;
+  position: relative;
+}
+.Sign--full {
+  width: 100%;
+  background-color: transparent;
+}
+.Sign__links {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-left: auto;
+  margin-right: auto;
+}
+.Sign__link {
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+}
+.Sign__link::after {
+  content: '';
+  width: 100%;
+  height: var(--scroll-height);
+  border-radius: var(--scroll-radius);
+  background-color: #fff;
+  display: block;
+  margin-top: 15px;
+  transition: all 400ms;
+}
+.Sign__link--active::after {
+  background-color: var(--main-color);
+}
+
+.Sign__tabs {
+  width: 100%;
+  margin-top: 80px;
+  position: relative;
+  height: 75%;
+  display: flex;
+  justify-content: center;
+}
+.Sign__tab {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  width: 100%;
+  top: -10px;
+  transition: all 500ms;
+}
+.Sign__tab--active {
+  opacity: 1;
+  visibility: visible;
+  top: 0;
+}
+.Sign__form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Login */
+
+.Login__forget {
+  text-align: center;
+  color: var(--light-blue-font-color-active);
+  margin-top: 30px;
+  display: block;
+  opacity: 0.6;
+}
+
+.Sign__Errors {
+  color: var(--error-font-color);
+  text-align: center;
+  margin-top: auto;
+  align-self: end;
+}
+
+@media screen and (max-width: 920px) {
+  .Sign {
+    display: none;
+  }
+  .Sign--full {
+    display: initial;
+  }
+}

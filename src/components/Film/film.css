@@ -1,0 +1,141 @@
+.Film {
+  display: flex;
+  width: 100%;
+  transition: 500ms all;
+  /* height: 100%;*/
+}
+.Film__left {
+  margin-right: 20px;
+}
+.Film__poster {
+  width: var(--poster-width);
+  height: var(--poster-height);
+  background-size: cover;
+}
+.Film__actions {
+  width: 100%;
+  text-align: center;
+  margin-top: 25px;
+}
+.Film__action {
+  height: 38px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 38px;
+  line-height: 38px;
+  font-size: 18px;
+  font-weight: normal;
+}
+.Film__action + .Film__action {
+  margin-top: 17px;
+}
+.Film__action:hover {
+  background-color: #000000;
+}
+.Film__action--bold {
+  font-weight: bold;
+}
+.Film__action > a {
+  display: block;
+}
+.Film__links {
+  margin-top: 25px;
+  width: 100%;
+}
+.Film__links--bottom {
+  margin-top: 0;
+  margin-bottom: 25px;
+  width: auto;
+}
+.Film__link {
+  float: left;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 50%;
+  padding: 10px;
+}
+.Film__link + .Film__link {
+  margin-left: 10px;
+}
+.Film__google,
+.Film__netflix {
+  fill: red;
+  font-size: var(--icon-size);
+}
+.Film__apple {
+  fill: white;
+  font-size: var(--icon-size);
+}
+.Film__right {
+  flex: 1;
+}
+.Film__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  /* flex-wrap: wrap; */
+}
+.Film__score {
+  display: flex;
+  align-items: center;
+  font-size: var(--big-font-size);
+  margin-left: auto;
+}
+.Film__imdb {
+  margin-left: 10px;
+  fill: #f5de50;
+  font-size: 31px;
+}
+.Film__overview--column {
+  display: flex;
+  flex-direction: column;
+}
+.Film__overview {
+  font-size: var(--font-size);
+  line-height: 1.4em;
+  overflow: hidden;
+  height: 100%;
+}
+@media screen and (max-width: 1200px) {
+  .Film {
+    max-width: 100%;
+  }
+}
+@media screen and (max-width: 768px) {
+  /* .Film {
+    height: 92%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  } */
+  .Film--active {
+    left: 10px;
+  }
+  .Film__left {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+  .Film__link + .Film__link {
+    margin-left: 0;
+  }
+  .Film__right {
+    margin-left: 10px;
+  }
+}
+@media screen and (max-width: 490px) {
+  .Film {
+    flex-direction: column;
+  }
+  .Film__left {
+    display: flex;
+    justify-content: center;
+  }
+  .Film__links {
+    display: flex;
+    justify-content: space-around;
+    margin-left: 5px;
+    flex-direction: column;
+    width: auto;
+  }
+  .Film__links--bottom {
+    flex-direction: row;
+  }
+}

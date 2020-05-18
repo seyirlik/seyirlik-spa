@@ -1,0 +1,110 @@
+.Filters {
+  padding: 35px 40px;
+}
+.Filters__item {
+  margin-bottom: 21px;
+}
+.Filters__header {
+  display: flex;
+  font-size: 24px;
+  align-items: center;
+  margin-bottom: 18px;
+  opacity: 0.5;
+}
+.Filters__header--active {
+  opacity: 1;
+}
+.Filters__header::before {
+  content: attr(content);
+  margin-right: 20px;
+  font-weight: bold;
+}
+.Filters__title {
+  font-weight: lighter;
+}
+.Filters__filter {
+  color: var(--blue-font-color-inactive);
+  margin-left: auto;
+  font-weight: lighter;
+}
+.Filters__range {
+  width: 100%;
+  background-color: transparent;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+.Filters__btn {
+  background-color: var(--bg-transparent);
+  color: currentColor;
+  padding: 4px 16px;
+  height: 40px;
+  border-radius: 40px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-bottom: 8px;
+}
+.Filters__btn--active {
+  background: var(--linear-bg);
+}
+.Filters__panel {
+  margin-top: 30px;
+}
+.Filters__select {
+  -ms-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-appearance: none;
+  color: currentColor;
+  padding: 5px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  text-align: center;
+}
+.Filters__apply {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  font-size: 20px;
+  width: 120px;
+  height: 45px;
+}
+/* Range Input */
+/* chrome */
+.Filters__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 25px;
+  width: 25px;
+  border-radius: 25px;
+  background-color: #4a00e0;
+}
+.Filters__range::-webkit-slider-runnable-track {
+  background: var(--linear-bg);
+  height: 7px;
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+}
+/* firefox */
+.Filters__range::-moz-range-thumb {
+  height: 25px;
+  width: 25px;
+  border-radius: 25px;
+  background-color: #4a00e0;
+}
+.Filters__range::-moz-range-progress {
+  background: var(--linear-bg);
+  height: 7px;
+}
+/* ie */
+.Filters__range::-ms-thumb {
+  height: 25px;
+  width: 25px;
+  border-radius: 25px;
+  background-color: #4a00e0;
+}
+.Filters__range::-ms-fill-lower {
+  background: var(--linear-bg);
+  height: 7px;
+}

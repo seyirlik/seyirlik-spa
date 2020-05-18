@@ -1,0 +1,36 @@
+:root {
+  --main-color: #8e2de2; /*butonlar vs*/
+  --font-color: #fff; /* temel font*/
+  --inactive-font-color: #9c8da3; /*3.sonuç bulundu form label vs.*/
+  --error-font-color: #fc6767; /*form error*/
+  --light-blue-font-color-active: #4ef3ff;
+  --blue-font-color-inactive: #2d8899; /*Şifremi unuttum seçilmedi vs.*/
+  --bg-transparent: rgba(0, 0, 0, 0.45);
+  --placeholder-bg: #dddfe2;
+  --linear-bg: linear-gradient(
+    90deg,
+    rgba(142, 45, 226, 1) 0%,
+    rgba(74, 0, 224, 1) 100%
+  );
+  --poster-width: 190px;
+  --poster-height: 260px;
+  /* --poster-width: 170px; */
+  /* --poster-height: 240px; */
+  --font-size: 16px;
+  --icon-size: 28px;
+  --big-font-size: 22px;
+  --brand-font-size: 35px;
+
+  --actor-image-size: 80px;
+
+  --comment-user-image-size: 64px;
+
+  --header-nav-width: 170px; /*navigation width*/
+
+  --finger-size: 40px;
+
+  /*Scrollbar*/
+
+  --scroll-height: 3px;
+  --scroll-radius: 4px;
+}
