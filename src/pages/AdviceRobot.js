@@ -3,12 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { getFilms } from '../store/actions/films';
 import Layout from '../layouts/Layout';
-import SortPanel from '../components/SortPanel';
 import FilterPanel from '../components/FilterPanel';
 import Film from '../components/Film';
 import LazyImageObserver from '../hoc/LazyImageObserver';
 import Loader from '../components/Loader';
 import queryString from 'query-string';
+import Sort from '../components/Sort';
+import Modal from '../layouts/Modal';
 
 const AdviceRobot = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const AdviceRobot = () => {
     imdb,
   } = queryString.parse(useLocation().search);
   const [loading, setLoading] = useState(true);
-
+  const [showFilterModal, setShowFilterModal] = useState(false);
   useEffect(() => {
     setLoading(true);
     dispatch(
@@ -41,16 +42,7 @@ const AdviceRobot = () => {
   }
   return (
     <LazyImageObserver data={films}>
-      <div
-        style={{
-          textAlign: 'right',
-          marginBottom: '8px',
-          display: 'flex',
-        }}
-      >
-        <SortPanel />
-        <div className="flex--small tablet-hidden"></div>
-      </div>
+      <Sort showModal={() => setShowFilterModal(true)} />
       <main className="flex-wrapper">
         <section
           className={`flex--large bg-transparent custom-scrollbar${
@@ -90,6 +82,17 @@ const AdviceRobot = () => {
           />
         </aside>
       </main>
+      <Modal
+        isActive={showFilterModal}
+        closeModal={() => setShowFilterModal(false)}
+      >
+        <FilterPanel
+          yearQuery={year}
+          countryQuery={country}
+          genresQuery={genres}
+          imdb={imdb}
+        />
+      </Modal>
     </LazyImageObserver>
   );
 };

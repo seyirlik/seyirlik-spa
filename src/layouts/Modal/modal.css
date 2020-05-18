@@ -26,6 +26,7 @@
   z-index: 1;
 }
 .Modal__content {
+  color: #fff;
   z-index: 2;
   background: rgb(67, 20, 108);
   background: linear-gradient(
@@ -36,7 +37,6 @@
   );
   width: 25%;
   height: 65vh;
-  color: black;
   border-radius: 12px;
   padding: 15px 0;
 }

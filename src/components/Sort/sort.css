@@ -1,0 +1,21 @@
+.sort {
+  text-align: right;
+  margin-bottom: 8px;
+  display: flex;
+}
+
+.filter-btn {
+  display: none;
+  height: 35px;
+  line-height: 34px;
+  font-size: calc(var(--font-size) + 5px);
+}
+.filter-icon {
+  margin-right: 8px;
+  font-size: var(--font-size);
+}
+@media screen and (max-width: 768px) {
+  .filter-btn {
+    display: initial;
+  }
+}
