@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import http from '../utils/http';
 import { useHistory, useLocation } from 'react-router-dom';
+import http from '../utils/http';
+
 const RandomFilm = () => {
   const location = useLocation();
   const [slug, setSlug] = useState('');

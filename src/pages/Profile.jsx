@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import Layout from '../layouts/Layout';
+import Layout from '../hoc/Layout';
 
 function Profile(props) {
   const { nick } = useParams();

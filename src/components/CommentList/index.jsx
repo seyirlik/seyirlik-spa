@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import Comment from '../../components/Comment';
+import Comment from '../Comment';
 import LazyImageObserver from '../../hoc/LazyImageObserver';
 
 function CommentList({ comments, totalCount }) {

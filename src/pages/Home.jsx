@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../layouts/Layout';
+import Layout from '../hoc/Layout';
 import { useSelector } from 'react-redux';
 //components
 import Slider from '../components/Slider';

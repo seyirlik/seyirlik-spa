@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleModal } from '../../store/reducers/modal';
-import Modal from '../../layouts/Modal';
+import Modal from '../../hoc/Modal';
 import Sign from '../Sign';
 
 function SignModal() {

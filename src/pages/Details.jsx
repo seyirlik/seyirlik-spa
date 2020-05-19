@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getFilmDetails, getMoreComment } from '../store/actions/details';
-import Layout from '../layouts/Layout';
+import Layout from '../hoc/Layout';
 import Film from '../components/Film';
 import FilmSidebar from '../components/FilmSidebar';
 import CommentForm from '../components/CommentForm';
-import CommentList from '../layouts/CommentList';
+import CommentList from '../components/CommentList';
 import Loader from '../components/Loader';
 
 const Details = () => {

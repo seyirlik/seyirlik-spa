@@ -3,14 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getFilteredFilms } from '../store/selectors/filmFilter';
 import { useLocation } from 'react-router-dom';
 import { getFilms } from '../store/actions/films';
-import Layout from '../layouts/Layout';
+import Layout from '../hoc/Layout';
 import FilterPanel from '../components/FilterPanel';
 import Film from '../components/Film';
 import LazyImageObserver from '../hoc/LazyImageObserver';
 import Loader from '../components/Loader';
 import queryString from 'query-string';
 import Sort from '../components/Sort';
-import Modal from '../layouts/Modal';
+import Modal from '../hoc/Modal';
 import FilmPoster from '../components/FilmPoster';
 
 const AdviceRobot = () => {
