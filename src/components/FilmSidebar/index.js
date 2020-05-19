@@ -53,7 +53,7 @@ function FilmSidebar() {
               <li className="Sidebar__actor Sidebar__item" key={i}>
                 <a href={`/${slug}`}>
                   <img
-                    src={`https://image.tmdb.org/t/p/w500/${image}`}
+                    src={image}
                     alt={slug}
                     className="Sidebar__image"
                   />
