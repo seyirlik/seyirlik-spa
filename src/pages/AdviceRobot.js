@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { getFilteredFilms } from '../store/selectors/filmFilter';
 import { useLocation } from 'react-router-dom';
 import { getFilms } from '../store/actions/films';
 import Layout from '../layouts/Layout';
@@ -14,7 +15,8 @@ import FilmPoster from '../components/FilmPoster';
 
 const AdviceRobot = () => {
   const dispatch = useDispatch();
-  const { films, pagination, view } = useSelector((state) => state.films);
+  const { pagination, view } = useSelector((state) => state.films);
+  const films = useSelector(getFilteredFilms);
   const {
     page = 1,
     limit = 10,

@@ -1,6 +1,6 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { setView, filterData } from '../../store/actions/films';
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setView, setFilter } from '../../store/actions/films';
 const styles = {
   btn: {
     marginLeft: '20px',
@@ -12,14 +12,25 @@ const styles = {
     flex: '1 1',
   },
 };
+
 function SortPanel() {
   const dispatch = useDispatch();
+  const filter = useSelector((state) => state.films.filter);
+
+  const sortHandler = useCallback(
+    (sortBy) => {
+      const filterSign = filter.charAt(0) === '-' ? '+' : '-';
+      dispatch(setFilter(filterSign + sortBy));
+    },
+    [dispatch, filter]
+  );
+
   return (
     <div className="Sort" style={styles.panel}>
       <button
         className="reset-btn Sort__btn"
         style={styles.btn}
-        onClick={() => dispatch(filterData('-name'))}
+        onClick={() => sortHandler('name')}
       >
         <svg
           width="1em"
@@ -37,7 +48,7 @@ function SortPanel() {
       <button
         className="reset-btn Sort__btn"
         style={styles.btn}
-        onClick={() => dispatch(filterData('-imdb'))}
+        onClick={() => sortHandler('imdb')}
       >
         <svg
           width="1em"

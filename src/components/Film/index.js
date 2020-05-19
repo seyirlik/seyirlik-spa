@@ -43,6 +43,7 @@ function Film({ film, showActions, showLinks }) {
               href={`https://play.google.com/store/movies/details/${film.google}&gl=TR`}
               target="_blank"
               rel="noopener noreferrer"
+              title="Google Filmler"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -65,6 +66,7 @@ function Film({ film, showActions, showLinks }) {
               href={`https://www.netflix.com/tr/title/${film.netflix}`}
               target="_blank"
               rel="noopener noreferrer"
+              title="Netflix"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -87,6 +89,7 @@ function Film({ film, showActions, showLinks }) {
               href={`https://itunes.apple.com/tr/movie/${film.apple}?l=tr`}
               target="_blank"
               rel="noopener noreferrer"
+              title="iTunes"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -109,20 +112,27 @@ function Film({ film, showActions, showLinks }) {
   return (
     <section className="Film">
       <div className="Film__left">
-        <a href={`/f/${film.slug}`}>
+        <a href={`/f/${film.slug}`} title={film.local_name}>
           <img
             src={`${film.poster}`}
-            alt="film"
+            alt={film.local_name}
             className="Film__poster lazy-image"
           />
         </a>
         {showActions && (
           <ul className="Film__actions">
             <li className="Film__action">
-              <a href="/">Fragman</a>
+              <a
+                href="/"
+                title="Filmin fragmanını izle"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Fragman
+              </a>
             </li>
             <li className="Film__action Film__action--bold">
-              <a href="/" onClick={addListHandler}>
+              <a href="/" onClick={addListHandler} title="Film Listeme Ekle">
                 + Listeme Ekle
               </a>
             </li>
@@ -142,6 +152,7 @@ function Film({ film, showActions, showLinks }) {
             href={`https://www.imdb.com/title/${film.imdb_id}`}
             target="_blank"
             rel="noopener noreferrer"
+            title="IMDB"
           >
             <span>
               {film.imdb_score > 0 ? film.imdb_score : 'Puanlanmamış'}

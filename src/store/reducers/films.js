@@ -3,7 +3,8 @@ const initialState = {
   films: [],
   pagination: {},
   maxPage: 0,
-  view: 0, // 0 list 1 grid
+  filter: '',
+  view: 0, // 1 list 0 grid
 };
 
 export default function films(state = initialState, action) {
@@ -26,10 +27,10 @@ export default function films(state = initialState, action) {
         ...state,
         view: action.payload,
       };
-    case actions.FILTER_DATA:
+    case actions.FILTER_CHANGE:
       return {
         ...state,
-        films: action.films,
+        filter: action.filter,
       };
     default:
       return state;

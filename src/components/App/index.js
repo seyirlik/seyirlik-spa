@@ -14,6 +14,7 @@ import RandomFilm from '../../pages/RandomFilm';
 import Profile from '../../pages/Profile';
 import EditProfile from '../../pages/EditProfile';
 import LogOut from '../../pages/LogOut';
+import NoMatch from '../../pages/NoMatch';
 
 //Modal
 import SignModal from '../SignModal';
@@ -32,17 +33,16 @@ function App() {
           <span className="loading"></span>
         </div>
       )} */}
-      <div className="container">
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/tavsiye-robotu" component={AdviceRobot} />
-          <Route path="/rastgele" component={RandomFilm} />
-          <Route path="/f/:slug" component={Details} />
-          <Route path="/u/:nick" component={Profile} />
-          <WithLogin path="/profil-duzenle" children={<EditProfile />} />
-          <WithLogin path="/cikis" children={<LogOut />} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/tavsiye-robotu" component={AdviceRobot} />
+        <Route path="/rastgele" component={RandomFilm} />
+        <Route path="/f/:slug" component={Details} />
+        <Route path="/u/:nick" component={Profile} />
+        <WithLogin path="/profil-duzenle" children={<EditProfile />} />
+        <WithLogin path="/cikis" children={<LogOut />} />
+        <Route path="*" component={NoMatch} />
+      </Switch>
       <SignModal />
       <ToastContainer autoClose={8000} />
     </Router>

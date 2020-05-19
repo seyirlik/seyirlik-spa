@@ -24,8 +24,8 @@ export const getFilmDetails = (slug, page = 1) => (dispatch, _, http) => {
       dispatch(setData(film, results, pagination, totalPage, totalCount));
     })
     .catch((err) => {
-      toast.warn(err.response.data.message);
-      // Todo throw 404 error
+      // toast.warn(err.response.data.message);
+      window.location.href = '/hata';
     });
 };
 export const addComment = (newComment) => ({ type: NEW_COMMENT, newComment });

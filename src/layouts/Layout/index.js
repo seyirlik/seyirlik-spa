@@ -1,13 +1,13 @@
-import React from "react";
-import Nav from "../../components/Nav";
+import React from 'react';
+import Nav from '../../components/Nav';
 
-const Layout = WrappedComponent => {
-  return function(props) {
+const Layout = (WrappedComponent) => {
+  return function (props) {
     return (
-      <React.Fragment>
+      <div className="container">
         <Nav />
         <WrappedComponent {...props} />
-      </React.Fragment>
+      </div>
     );
   };
 };
