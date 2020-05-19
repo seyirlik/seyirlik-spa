@@ -64,9 +64,9 @@ function FilterPanel({ years, yearQuery, countryQuery, genresQuery, imdb }) {
       delete querys.year;
     }
 
-    window.location.href = `http://localhost:3000${
-      location.pathname
-    }?${queryString.stringify(querys)}`;
+    window.location.href = `${location.pathname}?${queryString.stringify(
+      querys
+    )}`;
     // history.push({
     //   pathname: location.pathname,
     //   search: queryString.stringify(querys),
