@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useCallback, memo } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import http from '../../utils/http';
 import queryString from 'query-string';
 import './filterPanel.css';
 
 function FilterPanel({ years, yearQuery, countryQuery, genresQuery, imdb }) {
-  const history = useHistory();
   const location = useLocation();
   const [range, setRange] = useState(imdb);
   const [genres, setGenres] = useState([]);
@@ -40,31 +39,39 @@ function FilterPanel({ years, yearQuery, countryQuery, genresQuery, imdb }) {
   );
   const filterHandler = useCallback(() => {
     const querys = queryString.parse(location.search);
+
     if (range > 0) {
       querys.imdb = range;
+    } else {
+      delete querys.imdb;
     }
+
     if (filterGenre.length > 0) {
       querys.genres = filterGenre;
+    } else {
+      delete querys.genres;
     }
-    if (country !== 0) {
+
+    if (country !== '0') {
       querys.country = country;
+    } else {
+      delete querys.country;
     }
-    if (year !== 0) {
+
+    if (year !== '0') {
       querys.year = year;
+    } else {
+      delete querys.year;
     }
-    history.push({
-      pathname: location.pathname,
-      search: queryString.stringify(querys),
-    });
-  }, [
-    country,
-    filterGenre,
-    history,
-    range,
-    year,
-    location.pathname,
-    location.search,
-  ]);
+
+    window.location.href = `http://localhost:3000${
+      location.pathname
+    }?${queryString.stringify(querys)}`;
+    // history.push({
+    //   pathname: location.pathname,
+    //   search: queryString.stringify(querys),
+    // });
+  }, [country, filterGenre, range, year, location.pathname, location.search]);
 
   return (
     <div className="Filters">
@@ -117,9 +124,9 @@ function FilterPanel({ years, yearQuery, countryQuery, genresQuery, imdb }) {
       <div className="Filters__item">
         <div
           className={`Filters__header ${
-            year !== 0 ? 'Filters__header--active' : ''
+            year !== '0' ? 'Filters__header--active' : ''
           }`}
-          content={year !== 0 ? '+' : '-'}
+          content={year !== '0' ? '+' : '-'}
         >
           <h4 className="Filters__title">Yapım Yılı</h4>
           <span className="Filters__filter">
@@ -130,7 +137,9 @@ function FilterPanel({ years, yearQuery, countryQuery, genresQuery, imdb }) {
             >
               <option value="0">Seçilmedi</option>
               {years.map((year) => (
-                <option key={year}>{year}</option>
+                <option key={year} value={year}>
+                  {year}
+                </option>
               ))}
             </select>
           </span>
@@ -139,9 +148,9 @@ function FilterPanel({ years, yearQuery, countryQuery, genresQuery, imdb }) {
       <div className="Filters__item">
         <div
           className={`Filters__header ${
-            country !== 0 ? 'Filters__header--active' : ''
+            country !== '0' ? 'Filters__header--active' : ''
           }`}
-          content={country !== 0 ? '+' : '-'}
+          content={country !== '0' ? '+' : '-'}
         >
           <h4 className="Filters__title">Ülke</h4>
           <span className="Filters__filter">
@@ -172,8 +181,8 @@ function FilterPanel({ years, yearQuery, countryQuery, genresQuery, imdb }) {
 }
 FilterPanel.defaultProps = {
   years: [1998, 1999, 2000, 2001],
-  yearQuery: 0,
-  countryQuery: 0,
+  yearQuery: '0',
+  countryQuery: '0',
   genresQuery: [],
   imdb: 0,
 };

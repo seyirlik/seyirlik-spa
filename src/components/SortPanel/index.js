@@ -56,7 +56,7 @@ function SortPanel() {
       <button
         className="reset-btn Sort__btn"
         style={styles.btn}
-        onClick={() => dispatch(setView(1))}
+        onClick={() => dispatch(setView(0))}
       >
         <svg
           width="1em"
@@ -75,7 +75,7 @@ function SortPanel() {
       <button
         className="reset-btn Sort__btn"
         style={styles.btn}
-        onClick={() => dispatch(setView(0))}
+        onClick={() => dispatch(setView(1))}
       >
         <svg
           width="1.2em"

@@ -2,14 +2,14 @@ import React, { useRef, useCallback, useEffect } from 'react';
 
 function Loader({ callback }) {
   const loader = useRef(null);
-
+  const observer = useRef(null);
   const loaderCallback = useCallback(
     (entries) => {
       const entry = entries[0];
       if (entry.isIntersecting) {
         callback();
-        if (loader.current) {
-          loader.current.unobserve(entry.target);
+        if (observer.current) {
+          observer.current.unobserve(entry.target);
         }
       }
     },
@@ -17,19 +17,19 @@ function Loader({ callback }) {
   );
 
   useEffect(() => {
-    if (loader.current == null) {
-      loader.current = new IntersectionObserver(loaderCallback, {
+    if (observer.current == null) {
+      observer.current = new IntersectionObserver(loaderCallback, {
         root: null,
         rootMargin: '-20px',
       });
     }
 
     if (loader && loader.current) {
-      loader.current.observe(loader.current);
+      observer.current.observe(loader.current);
     }
 
     return () => {
-      loader.current.unobserve(loader.current);
+      observer.current.unobserve(loader.current);
     };
   }, [loaderCallback]);
 

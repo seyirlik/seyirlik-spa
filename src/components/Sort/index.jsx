@@ -3,10 +3,13 @@ import SortPanel from '../SortPanel';
 import './sort.css';
 
 function Sort({ showModal }) {
-  const showFilterPanel = useCallback((e) => {
-    showModal(true);
-    e.preventDefault();
-  }, []);
+  const showFilterPanel = useCallback(
+    (e) => {
+      showModal(true);
+      e.preventDefault();
+    },
+    [showModal]
+  );
 
   return (
     <div className="sort">

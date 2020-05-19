@@ -15,6 +15,12 @@ export default function films(state = initialState, action) {
         pagination: action.pagination,
         maxPage: action.maxPage,
       };
+    case actions.MORE_DATA:
+      return {
+        ...state,
+        films: [...state.films, ...action.films],
+        pagination: action.pagination,
+      };
     case actions.SET_VIEW:
       return {
         ...state,

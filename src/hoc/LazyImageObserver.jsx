@@ -18,6 +18,7 @@ function LazyImageObserver(props) {
     if (observer.current == null) {
       observer.current = new IntersectionObserver(imageCallback, {
         rootMargin: '0px 0px -20px 0px',
+        root: null,
       });
     }
 
