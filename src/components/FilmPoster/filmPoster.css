@@ -1,0 +1,11 @@
+.film-poster {
+  width: var(--poster-width);
+  height: var(--poster-height);
+  margin: 0 5px 15px;
+}
+@media screen and (max-width: 576px) {
+  .film-poster {
+    width: 140px;
+    height: 180px;
+  }
+}

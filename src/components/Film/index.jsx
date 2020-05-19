@@ -1,39 +1,7 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
-import http from '../../utils/http';
 import './film.css';
 
-function Film({ film, showActions, showLinks }) {
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
-  const addListHandler = (e) => {
-    e.preventDefault();
-    if (!isAuthenticated) {
-      toast.info('Giriş Yapmalısınız!');
-      return false;
-    }
-
-    // TODO add control statement in list  or not
-    http
-      .post('/user/addToList', { film: film._id })
-      .then((res) => {
-        if (res.success) toast.success('Listenize eklendi');
-      })
-      .catch((err) => {
-        toast.warn(err.response.data.message);
-      });
-
-    // http
-    //   .get(`/user/removeFromList/${film._id}`)
-    //   .then((res) => {
-    //     if (res.success) toast.info('Listenizden çıkarıldı');
-    //   })
-    //   .catch((err) => {
-    //     toast.warn(err.response.data.message);
-    //   });
-  };
-
+function Film({ children, film, showLinks }) {
   function FilmLinks({ className }) {
     return (
       <ul className={`Film__links ${className}`}>
@@ -110,7 +78,7 @@ function Film({ film, showActions, showLinks }) {
     );
   }
   return (
-    <section className="Film">
+    <section className={`Film ${!showLinks ? 'Film--height' : ''}`}>
       <div className="Film__left">
         <a href={`/f/${film.slug}`} title={film.local_name}>
           <img
@@ -119,26 +87,8 @@ function Film({ film, showActions, showLinks }) {
             className="Film__poster lazy-image"
           />
         </a>
-        {showActions && (
-          <ul className="Film__actions">
-            <li className="Film__action">
-              <a
-                href="/"
-                title="Filmin fragmanını izle"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Fragman
-              </a>
-            </li>
-            <li className="Film__action Film__action--bold">
-              <a href="/" onClick={addListHandler} title="Film Listeme Ekle">
-                + Listeme Ekle
-              </a>
-            </li>
-          </ul>
-        )}
-        {!showActions && showLinks && <FilmLinks />}
+        {children && children}
+        {!children && showLinks && <FilmLinks />}
       </div>
       <article className="Film__right">
         <header className="Film__header">
@@ -172,15 +122,20 @@ function Film({ film, showActions, showLinks }) {
           </a>
         </header>
         <div className="Film__overview--column">
-          {showActions && <FilmLinks className="Film__links--bottom" />}
-          <p className="Film__overview">{film.overview}</p>
+          {children && <FilmLinks className="Film__links--bottom" />}
+          <p
+            className={`Film__overview ${
+              !showLinks ? 'Film__overview--height' : ''
+            }`}
+          >
+            {film.overview}
+          </p>
         </div>
       </article>
     </section>
   );
 }
 Film.defaultProps = {
-  showActions: false,
   showLinks: true,
 };
 export default Film;

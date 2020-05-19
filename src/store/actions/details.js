@@ -3,7 +3,14 @@ import { toast } from 'react-toastify';
 export const SET_DATA = 'SET_DATA';
 export const NEW_COMMENT = 'NEW_COMMENT';
 export const MORE_COMMENT = 'MORE_COMMENT';
-export const setData = (film, comments, pagination, totalPage, totalCount) => {
+export const setData = (
+  film,
+  comments,
+  pagination,
+  totalPage,
+  totalCount,
+  inList
+) => {
   return {
     type: SET_DATA,
     film,
@@ -11,17 +18,23 @@ export const setData = (film, comments, pagination, totalPage, totalCount) => {
     pagination,
     totalPage,
     totalCount,
+    inList,
   };
 };
-export const getFilmDetails = (slug, page = 1) => (dispatch, _, http) => {
+export const getFilmDetails = (slug) => (dispatch, getState, http) => {
+  const user = getState().auth.user.id;
+  // TODO send user id with headers
   return http
-    .get(`/film/${slug}`, { params: { page } })
+    .get(`/film/${slug}`, { params: { user } })
     .then((res) => {
       const {
         film,
         comments: { pagination, results, totalPage, totalCount },
+        inList,
       } = res;
-      dispatch(setData(film, results, pagination, totalPage, totalCount));
+      dispatch(
+        setData(film, results, pagination, totalPage, totalCount, inList)
+      );
     })
     .catch((err) => {
       // toast.warn(err.response.data.message);
@@ -48,7 +61,6 @@ export const newComment = (content, spoiler) => (dispatch, getState, http) => {
     })
     .catch((err) => {
       toast.warn('Opps! Bir sorun oluştu: ' + err.response.data.message);
-      console.log(err.response);
       return false;
     });
 };
@@ -76,3 +88,7 @@ export const getMoreComment = (page) => (dispatch, getState, http) => {
       return false;
     });
 };
+
+export const SET_IN_LIST = 'SET_IN_LIST';
+
+export const setInList = (inList) => ({ type: SET_IN_LIST, inList });

@@ -53,7 +53,7 @@ function FilmSidebar() {
           <h6 className="Sidebar__title">Yönetmen</h6>
           <a
             className="Sidebar__text"
-            href={`/${director.slug}`}
+            href={`/a/${director.slug}`}
             title={director.name}
           >
             {director.name}
@@ -66,7 +66,7 @@ function FilmSidebar() {
           <ul className="Sidebar__actors Sidebar__list">
             {crew.map(({ name, image, slug }, i) => (
               <li className="Sidebar__actor Sidebar__item" key={i}>
-                <a href={`${slug}`} title={name}>
+                <a href={`/a/${slug}`} title={name}>
                   <img src={image} alt={slug} className="Sidebar__image" />
                 </a>
               </li>

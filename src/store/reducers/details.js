@@ -6,6 +6,7 @@ const initialState = {
   pagination: {},
   totalPage: 0,
   totalCount: 0,
+  inList: false,
 };
 
 export default function detailsReducer(state = initialState, action) {
@@ -18,6 +19,7 @@ export default function detailsReducer(state = initialState, action) {
         pagination: action.pagination,
         totalPage: action.totalPage,
         totalCount: action.totalCount,
+        inList: action.inList,
       };
     case actions.MORE_COMMENT:
       return {
@@ -31,6 +33,11 @@ export default function detailsReducer(state = initialState, action) {
       return {
         ...state,
         comments: [action.newComment, ...state.comments],
+      };
+    case actions.SET_IN_LIST:
+      return {
+        ...state,
+        inList: action.inList,
       };
     default:
       return state;

@@ -6,7 +6,7 @@ function Comment({ comment }) {
   const [show, setShow] = useState(!comment.spoiler);
   return (
     <section key={comment._id} className="Comment">
-      <a href={`/u/${comment.user.nick}`}>
+      <a href={`/u/${comment.user.nick}`} title={comment.user.nick}>
         <img
           className="Comment__user lazy-image"
           data-src={`${USER_IMAGE_URL}${comment.user.profile_image}`}
@@ -19,7 +19,11 @@ function Comment({ comment }) {
         }`}
       >
         {!show ? (
-          <button className="Comment__spoiler" onClick={() => setShow(true)}>
+          <button
+            className="Comment__spoiler"
+            onClick={() => setShow(true)}
+            title="Spoilerı Göster"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

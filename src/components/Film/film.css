@@ -4,6 +4,9 @@
   transition: 500ms all;
   /* height: 100%;*/
 }
+.Film--height {
+  margin-bottom: 5px;
+}
 .Film__left {
   margin-right: 20px;
 }
@@ -93,7 +96,6 @@
   font-size: var(--font-size);
   line-height: 1.4em;
   overflow: hidden;
-  height: 100%;
 }
 @media screen and (max-width: 1200px) {
   .Film {
@@ -106,6 +108,9 @@
     overflow-y: scroll;
     overflow-x: hidden;
   } */
+  .Film--height {
+    max-height: 275px;
+  }
   .Film--active {
     left: 10px;
   }
@@ -119,10 +124,14 @@
   .Film__right {
     margin-left: 10px;
   }
+  .Film__overview--height {
+    max-height: 185px;
+  }
 }
 @media screen and (max-width: 490px) {
   .Film {
     flex-direction: column;
+    max-height: initial;
   }
   .Film__left {
     display: flex;
