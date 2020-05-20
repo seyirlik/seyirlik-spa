@@ -9,11 +9,11 @@ function FilmSidebar() {
 
   return (
     <ul className="Sidebar no-scrollbar">
-      <li className="Sidebar__row">
-        <h6 className="Sidebar__title">Ülke</h6>
-        <div>
-          {countries &&
-            countries.map((country) => (
+      {countries && (
+        <li className="Sidebar__row">
+          <h6 className="Sidebar__title">Ülke</h6>
+          <div>
+            {countries.map((country) => (
               <a
                 href={`/tavsiye-robotu?country=${country.slug}`}
                 className="Sidebar__text Sidebar__country"
@@ -23,8 +23,9 @@ function FilmSidebar() {
                 {country.name}
               </a>
             ))}
-        </div>
-      </li>
+          </div>
+        </li>
+      )}
       {genres && (
         <li className="Sidebar__row">
           <h6 className="Sidebar__title">Tür</h6>

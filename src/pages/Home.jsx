@@ -5,14 +5,14 @@ import { useSelector } from 'react-redux';
 import Slider from '../components/Slider';
 import Sign from '../components/Sign';
 
-const Home = (props) => {
+function Home() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   return (
-    <main className="flex-wrapper">
+    <main className="flex-wrapper jc-c">
       <Slider />
       {!isAuthenticated && <Sign />}
     </main>
   );
-};
+}
 
 export default Layout(Home);

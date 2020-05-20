@@ -54,6 +54,9 @@ a {
   justify-content: space-between;
   position: relative;
 }
+.jc-c {
+  justify-content: center;
+}
 .flex--large {
   flex: 1;
   max-width: 1117px;

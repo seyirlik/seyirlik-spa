@@ -3,7 +3,12 @@ import './filmPoster.css';
 
 function FilmPoster({ film }) {
   return (
-    <a href={`/f/${film.slug}`} key={film._id} className="film-link">
+    <a
+      href={`/f/${film.slug}`}
+      key={film._id}
+      className="film-link"
+      title={film.local_name}
+    >
       <img
         src={film.poster}
         alt={film.local_name}

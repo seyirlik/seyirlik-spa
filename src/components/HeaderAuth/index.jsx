@@ -55,8 +55,8 @@ const HeaderAuth = () => {
         </h3>
       </a>
       {isAuthenticated && (
-        <a className="auth__list" href="/">
-          Listem
+        <a className="auth__list" href="/cikis">
+          Çıkış Yap
         </a>
       )}
     </div>

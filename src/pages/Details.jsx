@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { Helmet } from 'react-helmet';
 import {
   getFilmDetails,
   getMoreComment,
@@ -84,6 +85,71 @@ const Details = () => {
 
   return (
     <main className="flex-wrapper">
+      {film ? (
+        <Helmet>
+          <title>{film.local_name}</title>
+          <meta
+            name="description"
+            content={`${film.local_name} filmi konusu,oyuncuları,yönetmeni,puanı ve detayları `}
+          />
+          <meta
+            name="keywords"
+            content={`${film.local_name} filmi,${film.original_name} filmi,${film.local_name} oyuncuları,${film.local_name} konusu`}
+          />
+          <meta
+            property="og:url"
+            content={`https://seyirlik.herokuapp.com/f/${slug}`}
+          />
+          <meta property="og:title" content={film.local_name} />
+          <meta property="og:image" content={film.poster} />
+          <meta
+            property="og:description"
+            content={`${film.local_name} konusu,oyuncuları,yönetmeni,imdb puanı`}
+          />
+          <meta
+            name="twitter:url"
+            content={`https://seyirlik.herokuapp.com/f/${slug}`}
+          />
+          <meta name="twitter:title" content={film.local_name} />
+          <meta
+            name="twitter:description"
+            content={`${film.local_name} konusu,oyuncuları,yönetmeni,imdb puanı`}
+          />
+          <meta name="twitter:image" content={film.poster} />
+        </Helmet>
+      ) : (
+        <Helmet>
+          <title>{slug}</title>
+          <meta
+            name="description"
+            content={`${slug} filmi konusu,oyuncuları,yönetmeni,puanı ve detayları `}
+          />
+          <meta
+            name="keywords"
+            content={`${slug} filmi,${slug} filmi,${slug} oyuncuları,${slug} konusu`}
+          />
+          <meta
+            property="og:url"
+            content={`https://seyirlik.herokuapp.com/f/${slug}`}
+          />
+          <meta property="og:title" content={slug} />
+          <meta
+            property="og:description"
+            content={`${slug}
+            )} konusu,oyuncuları,yönetmeni,imdb puanı`}
+          />
+          <meta
+            name="twitter:url"
+            content={`https://seyirlik.herokuapp.com/${slug}`}
+          />
+          <meta name="twitter:title" content={slug} />
+          <meta
+            name="twitter:description"
+            content={`${slug} konusu,oyuncuları,yönetmeni,imdb puanı`}
+          />
+        </Helmet>
+      )}
+
       <section
         className={`flex--large bg-transparent custom-scrollbar ${
           loading ? 'placeholder-loading' : ''

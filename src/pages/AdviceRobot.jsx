@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Helmet } from 'react-helmet';
 import { getFilteredFilms } from '../store/selectors/filmFilter';
 import { useLocation } from 'react-router-dom';
 import { getFilms } from '../store/actions/films';
@@ -53,6 +54,35 @@ const AdviceRobot = () => {
   }
   return (
     <LazyImageObserver data={films}>
+      <Helmet>
+        <title>Tavsiye Robotu | Film Arşivi</title>
+        <meta
+          name="description"
+          content="Film ara,imdb puanı,ülke,yıl,kategori filtrelemesi yaparak moduna göre film bul."
+        />
+        <meta
+          name="keywords"
+          content="film ara,film filtere,ne izlesem,imdb puanına göre filmler,yıla göre filmler,türe göre filmler"
+        />
+        <meta
+          property="og:url"
+          content={`https://seyirlik.herokuapp.com/tavsiye-robotu`}
+        />
+        <meta property="og:title" content="Tavsiye Robotu" />
+        <meta
+          property="og:description"
+          content="Filmleri oyuncu,imdb puanı,yılı ve türlerine göre filtereleyerek zevkine uygun film bul"
+        />
+        <meta
+          name="twitter:url"
+          content={`https://seyirlik.herokuapp.com/tavsiye-robotu`}
+        />
+        <meta name="twitter:title" content="Tavsiye Robotu" />
+        <meta
+          name="twitter:description"
+          content="Filmleri oyuncu,imdb puanı,yılı ve türlerine göre filtereleyerek zevkine uygun film bul"
+        />
+      </Helmet>
       <Sort showModal={() => setShowFilterModal(true)} />
       <main className="flex-wrapper">
         <section

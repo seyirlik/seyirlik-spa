@@ -70,3 +70,6 @@ export const error = (message) => ({
 export const clearError = () => ({
   type: CLEAR_ERROR,
 });
+
+export const LOGOUT = 'LOGOUT';
+export const logout = () => ({ type: LOGOUT });

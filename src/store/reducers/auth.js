@@ -3,7 +3,7 @@ import * as actions from '../actions/auth';
 const initialState = {
   isAuthenticated: false,
   user: {},
-  error: ''
+  error: '',
 };
 
 export default function user(state = initialState, action) {
@@ -12,17 +12,23 @@ export default function user(state = initialState, action) {
       return {
         ...state,
         isAuthenticated: true,
-        user: action.user
+        user: action.user,
+      };
+    case actions.LOGOUT:
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: {},
       };
     case actions.ERROR:
       return {
         ...state,
-        error: action.message
+        error: action.message,
       };
     case actions.CLEAR_ERROR:
       return {
         ...state,
-        error: ''
+        error: '',
       };
     default:
       return state;
