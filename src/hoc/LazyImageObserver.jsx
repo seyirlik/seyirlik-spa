@@ -4,14 +4,16 @@ function LazyImageObserver(props) {
   let observer = useRef(null);
 
   const imageCallback = useCallback((entries) => {
-    const entry = entries[0];
-    if (entry.isIntersecting) {
-      const source = entry.target.dataset.src;
-      if (source) {
-        entry.target.src = source;
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const source = entry.target.dataset.src;
+        if (source) {
+          entry.target.src = source;
+          entry.target.classList.remove('lazy-image');
+        }
+        observer.current.unobserve(entry.target);
       }
-      observer.current.unobserve(entry.target);
-    }
+    });
   }, []);
 
   useEffect(() => {

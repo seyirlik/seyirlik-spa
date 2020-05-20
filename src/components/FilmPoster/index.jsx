@@ -10,7 +10,7 @@ function FilmPoster({ film }) {
       title={film.local_name}
     >
       <img
-        src={film.poster}
+        data-src={film.poster}
         alt={film.local_name}
         className="film-poster lazy-image"
         onError={(e) =>

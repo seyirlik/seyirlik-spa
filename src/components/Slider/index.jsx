@@ -1,7 +1,7 @@
 import React, { useEffect, useState, memo } from 'react';
 import http from '../../utils/http';
-import './slider.css';
 import SliderItem from '../SliderItem';
+import './slider.css';
 
 const Slider = memo((props) => {
   const [films, setFilms] = useState([]);

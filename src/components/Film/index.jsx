@@ -1,7 +1,7 @@
 import React from 'react';
 import './film.css';
 
-function Film({ children, film, showLinks }) {
+function Film({ children, film, showLinks, lazy }) {
   function FilmLinks({ className }) {
     return (
       <ul className={`Film__links ${className}`}>
@@ -81,11 +81,19 @@ function Film({ children, film, showLinks }) {
     <section className={`Film ${!showLinks ? 'Film--height' : ''}`}>
       <div className="Film__left">
         <a href={`/f/${film.slug}`} title={film.local_name}>
-          <img
-            src={`${film.poster}`}
-            alt={film.local_name}
-            className="Film__poster lazy-image"
-          />
+          {lazy ? (
+            <img
+              data-src={`${film.poster}`}
+              alt={film.local_name}
+              className="Film__poster lazy-image"
+            />
+          ) : (
+            <img
+              src={`${film.poster}`}
+              alt={film.local_name}
+              className="Film__poster"
+            />
+          )}
         </a>
         {children && children}
         {!children && showLinks && <FilmLinks />}
@@ -137,5 +145,6 @@ function Film({ children, film, showLinks }) {
 }
 Film.defaultProps = {
   showLinks: true,
+  lazy: false,
 };
 export default Film;

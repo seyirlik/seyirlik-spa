@@ -53,7 +53,7 @@ const AdviceRobot = () => {
     ).then(() => setLoading(false));
   }
   return (
-    <LazyImageObserver data={films}>
+    <LazyImageObserver data={[films, view]}>
       <Helmet>
         <title>Tavsiye Robotu | Film Arşivi</title>
         <meta
@@ -95,7 +95,12 @@ const AdviceRobot = () => {
               return !view ? (
                 <FilmPoster film={film} key={film._id} />
               ) : (
-                <Film film={film} showLinks={false} key={film._id} />
+                <Film
+                  film={film}
+                  showLinks={false}
+                  lazy={true}
+                  key={film._id}
+                />
               );
             })}
           {!loading && pagination.nextPage && (
