@@ -26,7 +26,8 @@ const RandomFilm = () => {
 
   return (
     <div className="loading-overlay">
-      <h1 className="loading">Random Film Getiriliyor...</h1>
+      {/* <h1 className="loading">Random Film Getiriliyor...</h1> */}
+      <span className="loading"></span>
     </div>
   );
 };

@@ -95,7 +95,11 @@ const Details = () => {
               <ul className="Film__actions">
                 <li className="Film__action">
                   <a
-                    href="/"
+                    href={
+                      film.trailer
+                        ? `https://www.youtube.com/watch?v=${film.trailer}`
+                        : `https://www.youtube.com/results?search_query=${film.local_name} fragman`
+                    }
                     title="Filmin fragmanını izle"
                     target="_blank"
                     rel="noopener noreferrer"
