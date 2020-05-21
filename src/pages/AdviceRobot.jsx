@@ -52,6 +52,7 @@ const AdviceRobot = () => {
       )
     ).then(() => setLoading(false));
   }
+
   return (
     <LazyImageObserver data={[films, view]}>
       <Helmet>
@@ -92,7 +93,7 @@ const AdviceRobot = () => {
         >
           {films &&
             films.map((film) => {
-              return !view ? (
+              return view === 0 ? (
                 <FilmPoster film={film} key={film._id} />
               ) : (
                 <Film

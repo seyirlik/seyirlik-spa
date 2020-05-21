@@ -4,7 +4,7 @@ const initialState = {
   pagination: {},
   maxPage: 0,
   filter: '',
-  view: 0, // 1 list 0 grid
+  view: localStorage.view ? +localStorage.view : 0, // 1 list 0 grid
 };
 
 export default function films(state = initialState, action) {

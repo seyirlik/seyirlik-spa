@@ -1,5 +1,8 @@
 export const SET_VIEW = 'SET_VIEW';
-export const setView = (view) => ({ type: SET_VIEW, payload: view });
+export const setView = (view) => {
+  localStorage.setItem('view', view);
+  return { type: SET_VIEW, payload: view };
+};
 
 export const SET_DATA = 'SET_DATA';
 export const setData = (films, pagination, maxPage) => ({
