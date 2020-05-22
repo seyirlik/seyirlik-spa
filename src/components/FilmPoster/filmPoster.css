@@ -4,8 +4,13 @@
   margin: 0 5px 15px;
 }
 @media screen and (max-width: 576px) {
+  .film-link {
+    width: 45%;
+    margin-right: 6px;
+    display: inline-block;
+  }
   .film-poster {
-    width: 140px;
+    width: 100%;
     height: 180px;
   }
 }

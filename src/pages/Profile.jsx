@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Layout from '../hoc/Layout';
+import LazyImageObserver from '../hoc/LazyImageObserver';
 import FilmPoster from '../components/FilmPoster';
 import http from '../utils/http';
 import { USER_IMAGE_URL } from '../utils/constants';
@@ -22,7 +23,7 @@ function Profile() {
       })
       .catch((err) => {
         if (err.response.status === 404) {
-          window.location.href = '/hata';
+          window.location.href = `/hata?message=${err.response.data.message}`;
         }
       });
   }, [nick]);
@@ -58,28 +59,50 @@ function Profile() {
           content={`${nick} kullanıcısının profili`}
         />
       </Helmet>
+      <aside
+        className={`flex--small bg-transparent`}
+        style={{
+          padding: '20px',
+          position: 'relative',
+          marginLeft: '0',
+          display: 'flex',
+        }}
+      >
+        <img
+          src={`${USER_IMAGE_URL}${user.profile_image}`}
+          alt={nick}
+          style={{ width: '50px', height: '50px' }}
+        />
+        <div
+          style={{
+            marginLeft: '15px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <h2>{user.nick}</h2>
+          <time style={{ marginLeft: '5px' }}>
+            ({new Date(user.createdAt).toLocaleDateString()})
+          </time>
+        </div>
+      </aside>
       <section
         className={`flex--large bg-transparent custom-scrollbar `}
         style={{ flex: 1, position: 'relative' }}
       >
-        {loading && (
-          <div className="loading-overlay">
-            <span className="loading"></span>
-          </div>
-        )}
-        {!loading && user.list.length > 0 ? (
-          user.list.map((film) => <FilmPoster film={film} key={film._id} />)
-        ) : (
-          <p>Henüz Film Eklenmemiş</p>
-        )}
+        <LazyImageObserver data={loading}>
+          {loading && (
+            <div className="loading-overlay">
+              <span className="loading"></span>
+            </div>
+          )}
+          {!loading && user.list.length > 0 ? (
+            user.list.map((film) => <FilmPoster film={film} key={film._id} />)
+          ) : (
+            <p>Henüz Film Eklenmemiş</p>
+          )}
+        </LazyImageObserver>
       </section>
-      <aside
-        className={`flex--small bg-transparent`}
-        style={{ padding: '20px', position: 'relative' }}
-      >
-        <img src={`${USER_IMAGE_URL}${user.profile_image}`} alt={nick} />
-        <h2>{user.nick}</h2>
-      </aside>
     </main>
   );
 }
