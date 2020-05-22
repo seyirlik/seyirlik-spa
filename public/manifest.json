@@ -18,7 +18,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "https://seyirlik.herokuapp.com",
   "display": "standalone",
   "theme_color": "#8e2de2",
   "background_color": "#ffffff"
