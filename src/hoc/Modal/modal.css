@@ -47,3 +47,8 @@
     height: 80vh;
   }
 }
+@media screen and (max-width: 576px) {
+  .Modal__content {
+    overflow-y: scroll;
+  }
+}
