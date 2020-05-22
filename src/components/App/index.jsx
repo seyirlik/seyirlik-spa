@@ -39,6 +39,7 @@ function App() {
         <Route path="/rastgele" component={RandomFilm} />
         <Route path="/f/:slug" component={Details} />
         <Route path="/u/:nick" component={Profile} />
+        <Route path="/a/:actor" component={Profile} />
         <WithLogin path="/profil-duzenle" children={<EditProfile />} />
         <WithLogin path="/cikis" children={<LogOut />} />
         <Route path="*" component={NoMatch} />

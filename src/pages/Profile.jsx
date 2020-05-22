@@ -8,25 +8,49 @@ import http from '../utils/http';
 import { USER_IMAGE_URL } from '../utils/constants';
 
 function Profile() {
-  const { nick } = useParams();
+  const { nick, actor } = useParams();
   const [user, setUser] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    http
-      .get(`/user/${nick}`)
-      .then((res) => {
-        if (res.success) {
-          setUser(res.user);
-          setLoading(false);
-        }
-      })
-      .catch((err) => {
-        if (err.response.status === 404) {
-          window.location.href = `/hata?message=${err.response.data.message}`;
-        }
-      });
-  }, [nick]);
+    if (nick) {
+      http
+        .get(`/user/${nick}`)
+        .then((res) => {
+          if (res.success) {
+            setUser(res.user);
+            setLoading(false);
+          }
+        })
+        .catch((err) => {
+          if (err.response.status === 404) {
+            window.location.href = `/hata?message=${err.response.data.message}`;
+          }
+        });
+    } else if (actor) {
+      http
+        .get(`/actor/${actor}`)
+        .then((res) => {
+          if (res.success) {
+            const user = {
+              nick: res.actor.name,
+              profile_image: res.actor.image,
+              bio: res.actor.bio,
+              list: res.films,
+            };
+            console.log(user);
+            setUser(user);
+            setLoading(false);
+          }
+        })
+        .catch((err) => {
+          // if (err.response.status === 404) {
+          // window.location.href = `/hata?message=${err.response.data.message}`;
+          // }
+          console.log(err);
+        });
+    }
+  }, [nick, actor]);
 
   return (
     <main className="flex-wrapper">
@@ -63,28 +87,38 @@ function Profile() {
         className={`flex--small bg-transparent`}
         style={{
           padding: '20px',
-          position: 'relative',
           marginLeft: '0',
-          display: 'flex',
         }}
       >
-        <img
-          src={`${USER_IMAGE_URL}${user.profile_image}`}
-          alt={nick}
-          style={{ width: '50px', height: '50px' }}
-        />
         <div
           style={{
-            marginLeft: '15px',
             display: 'flex',
-            alignItems: 'center',
+            marginBottom: '15px',
           }}
         >
-          <h2>{user.nick}</h2>
-          <time style={{ marginLeft: '5px' }}>
-            ({new Date(user.createdAt).toLocaleDateString()})
-          </time>
+          <img
+            src={`${
+              nick ? USER_IMAGE_URL + user.profile_image : user.profile_image
+            }`}
+            alt={nick}
+            style={{ width: '50px', height: '50px' }}
+          />
+          <div
+            style={{
+              marginLeft: '15px',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            <h2>{user.nick}</h2>
+            {user.createdAt && (
+              <time style={{ marginLeft: '5px' }}>
+                ({new Date(user.createdAt).toLocaleDateString()})
+              </time>
+            )}
+          </div>
         </div>
+        {user.bio && <p>{user.bio}</p>}
       </aside>
       <section
         className={`flex--large bg-transparent custom-scrollbar `}
@@ -96,7 +130,7 @@ function Profile() {
               <span className="loading"></span>
             </div>
           )}
-          {!loading && user.list.length > 0 ? (
+          {!loading && user ? (
             user.list.map((film) => <FilmPoster film={film} key={film._id} />)
           ) : (
             <p>Henüz Film Eklenmemiş</p>

@@ -147,4 +147,5 @@ Film.defaultProps = {
   showLinks: true,
   lazy: false,
 };
+
 export default Film;
