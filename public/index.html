@@ -74,11 +74,50 @@
       name="twitter:image"
       content="https://seyirlik.herokuappcom/favicon.ico"
     />
+    <style>
+      .loading-overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--bg-transparent);
+      }
+      .loading {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px dashed #ffffff;
+        border-top-width: 4px;
+        border-left-width: 4px;
+        border-bottom-width: 0.1px;
+        border-right-width: 0px;
+        animation-name: spin;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+      @keyframes spin {
+        /* loading rotate animation */
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
-      <h1>Site Yükleniyor...</h1>
+      <div className="loading-overlay">
+        <span className="loading"></span>
+      </div>
     </div>
     <!--
       This HTML file is a template.
@@ -90,29 +129,5 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <!-- <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
-          navigator.serviceWorker
-            .register('service-worker.js')
-            .then(
-              function (registration) {
-                console.log(
-                  'Worker registration successful',
-                  registration.scope
-                );
-              },
-              function (err) {
-                console.log('Worker registration failed', err);
-              }
-            )
-            .catch(function (err) {
-              console.log(err);
-            });
-        });
-      } else {
-        console.log('Service Worker is not supported by browser.');
-      }
-    </script> -->
   </body>
 </html>
