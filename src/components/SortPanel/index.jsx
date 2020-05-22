@@ -31,6 +31,7 @@ function SortPanel() {
         className="reset-btn Sort__btn"
         style={styles.btn}
         onClick={() => sortHandler('name')}
+        aria-label="İsme göre sırala"
       >
         <svg
           width="1em"
@@ -49,6 +50,7 @@ function SortPanel() {
         className="reset-btn Sort__btn"
         style={styles.btn}
         onClick={() => sortHandler('imdb')}
+        aria-label="İmdb puanına göre sırala"
       >
         <svg
           width="1em"
@@ -68,6 +70,7 @@ function SortPanel() {
         className="reset-btn Sort__btn"
         style={styles.btn}
         onClick={() => dispatch(setView(0))}
+        aria-label="Sadece Poster"
       >
         <svg
           width="1em"
@@ -87,6 +90,7 @@ function SortPanel() {
         className="reset-btn Sort__btn"
         style={styles.btn}
         onClick={() => dispatch(setView(1))}
+        aria-label="Detaylı Bilgi Göster"
       >
         <svg
           width="1.2em"
