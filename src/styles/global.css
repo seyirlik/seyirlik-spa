@@ -65,6 +65,7 @@ a {
   overflow-x: hidden;
   overflow-y: scroll;
   padding: 25px 16px;
+  margin-bottom: 20px;
 }
 .flex--small {
   margin-left: 30px;

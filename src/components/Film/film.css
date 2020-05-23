@@ -126,6 +126,9 @@
   }
   .Film__overview--height {
     max-height: 185px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
   }
 }
 @media screen and (max-width: 490px) {

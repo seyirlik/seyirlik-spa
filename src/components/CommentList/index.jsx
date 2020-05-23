@@ -5,7 +5,10 @@ import LazyImageObserver from '../../hoc/LazyImageObserver';
 function CommentList({ comments, totalCount }) {
   return (
     <LazyImageObserver data={comments}>
-      <div className="Comments" style={{ marginTop: '20px' }}>
+      <div
+        className="Comments"
+        style={{ marginTop: '20px', marginBottom: '20px' }}
+      >
         <h4 className="Comments__title" style={{ fontSize: '20px' }}>
           Yorumlar ({totalCount})
         </h4>
