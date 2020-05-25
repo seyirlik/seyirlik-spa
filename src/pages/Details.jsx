@@ -7,7 +7,7 @@ import {
   getMoreComment,
   setInList,
 } from '../store/actions/details';
-import Layout from '../hoc/Layout';
+import withLayout from '../hoc/Layout';
 import Film from '../components/Film';
 import FilmSidebar from '../components/FilmSidebar';
 import CommentForm from '../components/CommentForm';
@@ -207,4 +207,4 @@ const Details = () => {
   );
 };
 
-export default Layout(Details);
+export default withLayout(Details);

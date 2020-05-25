@@ -1,0 +1,56 @@
+:root {
+  --label-width: 65px;
+}
+.form {
+  width: 100%;
+  max-width: 850px;
+  padding: 1.4em;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.file-container {
+  justify-content: center;
+  flex-direction: column;
+}
+.user-image {
+  max-width: 200px;
+  max-height: 300px;
+}
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3em;
+}
+.input-flex {
+  flex: 1;
+  margin: 0 5px 0 15px;
+  height: 35px;
+}
+.input-flex[type='checkbox'] {
+  flex: 0;
+}
+.image-input {
+  margin-top: 20px;
+}
+label {
+  width: var(--label-width);
+}
+.save-btn {
+  background-color: var(--main-color);
+  padding: 10px;
+  border-radius: 8px;
+  color: #fff;
+  margin-bottom: 15px;
+  margin-left: var(--label-width);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 576px) {
+  :root {
+    --label-width: 35px;
+  }
+  .form {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+}

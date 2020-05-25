@@ -56,6 +56,7 @@ a {
 }
 .jc-c {
   justify-content: center;
+  display: flex;
 }
 .flex--large {
   flex: 1;

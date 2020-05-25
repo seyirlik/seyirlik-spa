@@ -1,6 +1,6 @@
 import React from 'react';
-import Layout from '../hoc/Layout';
 import { useSelector } from 'react-redux';
+import withLayout from '../hoc/Layout';
 //components
 import Slider from '../components/Slider';
 import Sign from '../components/Sign';
@@ -15,4 +15,4 @@ function Home() {
   );
 }
 
-export default Layout(Home);
+export default withLayout(Home);

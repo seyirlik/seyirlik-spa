@@ -1,8 +1,8 @@
 import React from 'react';
 import Nav from '../../components/Nav';
 
-const Layout = (WrappedComponent) => {
-  return function (props) {
+const withLayout = (WrappedComponent) => {
+  return function WithLayout(props) {
     return (
       <div className="container">
         <Nav />
@@ -12,4 +12,4 @@ const Layout = (WrappedComponent) => {
   };
 };
 
-export default Layout;
+export default withLayout;

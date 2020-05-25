@@ -13,9 +13,9 @@ import store from './store';
 import { login } from './store/actions/auth';
 
 if (localStorage.token) {
-  const token = jwt_decode(localStorage.token);
-  if (Date.now() < token.exp * 1000) {
-    store.dispatch(login(token));
+  const decoded = jwt_decode(localStorage.token);
+  if (Date.now() < decoded.exp * 1000) {
+    store.dispatch(login(decoded));
   } else {
     localStorage.removeItem('token');
   }

@@ -19,9 +19,7 @@ export const loginRequest = (nick, password) => async (
     .then((res) => {
       const { success, token } = res;
       if (success) {
-        localStorage.setItem('token', token);
-        const user = jwt_decode(token);
-        dispatch(login(user));
+        dispatch(setToken(token));
         const {
           modal: { isActive },
         } = getState();
@@ -38,6 +36,12 @@ export const loginRequest = (nick, password) => async (
 };
 export const login = (user) => {
   return { type: LOGIN, user };
+};
+
+export const setToken = (token) => {
+  localStorage.setItem('token', token);
+  const user = jwt_decode(token);
+  return login(user);
 };
 
 //Register actions

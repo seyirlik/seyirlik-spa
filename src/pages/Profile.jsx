@@ -1,14 +1,18 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import Layout from '../hoc/Layout';
+import { useSelector } from 'react-redux';
+import withLayout from '../hoc/Layout';
 import LazyImageObserver from '../hoc/LazyImageObserver';
 import FilmPoster from '../components/FilmPoster';
 import http from '../utils/http';
 import { USER_IMAGE_URL } from '../utils/constants';
+import { toast } from 'react-toastify';
 
 function Profile() {
   const { nick, actor } = useParams();
+  const { id } = useSelector((state) => state.auth.user);
+
   const [user, setUser] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
@@ -20,10 +24,13 @@ function Profile() {
           if (res.success) {
             setUser(res.user);
             setLoading(false);
+          } else {
+            setLoading(false);
+            toast.error(res.message);
           }
         })
         .catch((err) => {
-          if (err.response.status === 404) {
+          if (err.response && err.response.status === 404) {
             window.location.href = `/hata?message=${err.response.data.message}`;
           }
         });
@@ -38,16 +45,14 @@ function Profile() {
               bio: res.actor.bio,
               list: res.films,
             };
-            console.log(user);
             setUser(user);
             setLoading(false);
           }
         })
         .catch((err) => {
-          // if (err.response.status === 404) {
-          // window.location.href = `/hata?message=${err.response.data.message}`;
-          // }
-          console.log(err);
+          if (err.response.status === 404) {
+            window.location.href = `/hata?message=${err.response.data.message}`;
+          }
         });
     }
   }, [nick, actor]);
@@ -101,8 +106,26 @@ function Profile() {
               nick ? USER_IMAGE_URL + user.profile_image : user.profile_image
             }`}
             alt={nick}
-            style={{ width: '50px', height: '50px' }}
+            style={{ maxWidth: '200px', maxHeight: '300px' }}
           />
+          {nick && user._id === id && (
+            <a href="/profil-duzenle/">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M12 20h9"></path>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+              </svg>
+            </a>
+          )}
           <div
             style={{
               marginLeft: '15px',
@@ -115,6 +138,12 @@ function Profile() {
               <time style={{ marginLeft: '5px' }}>
                 ({new Date(user.createdAt).toLocaleDateString()})
               </time>
+            )}
+
+            {nick && user._id === id && (
+              <a href="/cikis" style={{ marginLeft: '15px' }}>
+                Çıkış Yap
+              </a>
             )}
           </div>
         </div>
@@ -130,7 +159,7 @@ function Profile() {
               <span className="loading"></span>
             </div>
           )}
-          {!loading && user ? (
+          {!loading && user.list ? (
             user.list.map((film) => <FilmPoster film={film} key={film._id} />)
           ) : (
             <p>Henüz Film Eklenmemiş</p>
@@ -141,4 +170,4 @@ function Profile() {
   );
 }
 
-export default Layout(Profile);
+export default withLayout(Profile);

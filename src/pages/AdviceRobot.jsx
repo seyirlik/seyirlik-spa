@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { getFilteredFilms } from '../store/selectors/filmFilter';
 import { useLocation } from 'react-router-dom';
 import { getFilms } from '../store/actions/films';
-import Layout from '../hoc/Layout';
+import withLayout from '../hoc/Layout';
 import FilterPanel from '../components/FilterPanel';
 import Film from '../components/Film';
 import LazyImageObserver from '../hoc/LazyImageObserver';
@@ -132,4 +132,4 @@ const AdviceRobot = () => {
   );
 };
 
-export default Layout(AdviceRobot);
+export default withLayout(AdviceRobot);

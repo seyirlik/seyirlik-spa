@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../hoc/Layout';
+import withLayout from '../hoc/Layout';
 
 function NoMatch() {
   return (
@@ -11,4 +11,4 @@ function NoMatch() {
   );
 }
 
-export default Layout(NoMatch);
+export default withLayout(NoMatch);

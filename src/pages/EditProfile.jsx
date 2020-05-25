@@ -1,7 +1,13 @@
-import React from "react";
+import React from 'react';
+import withLayout from '../hoc/Layout';
+import EditProfileForm from '../components/EditProfileForm';
 
 const EditProfile = () => {
-  return <h1>Edit Profile</h1>;
+  return (
+    <main className="bg-transparent jc-c">
+      <EditProfileForm />
+    </main>
+  );
 };
 
-export default EditProfile;
+export default withLayout(EditProfile);
