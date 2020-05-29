@@ -23,7 +23,7 @@ function Loader({ callback }) {
         rootMargin: '0px 0px 20px 0px',
       });
     }
-    alert('kaldı');
+
     if (loader && loader.current) {
       observer.current.observe(loader.current);
     }
