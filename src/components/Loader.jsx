@@ -20,10 +20,10 @@ function Loader({ callback }) {
     if (observer.current == null) {
       observer.current = new IntersectionObserver(loaderCallback, {
         root: null,
-        rootMargin: '-20px',
+        rootMargin: '0px 0px 20px 0px',
       });
     }
-
+    alert('kaldı');
     if (loader && loader.current) {
       observer.current.observe(loader.current);
     }
